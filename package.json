@@ -1,0 +1,24 @@
+{
+  "name": "playlist-extends",
+  "version": "0.0.1",
+  "description": "Playlist manager that allows for playlists to be included in other playlists and exported to external formats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blackop778/playlist-extends.git"
+  },
+  "author": "Blackop778, Sirfunkbutter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Blackop778/playlist-extends/issues"
+  },
+  "homepage": "https://github.com/Blackop778/playlist-extends#readme",
+  "devDependencies": {
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  }
+}
