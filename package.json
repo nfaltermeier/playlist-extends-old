@@ -4,6 +4,7 @@
   "description": "Playlist manager that allows for playlists to be included in other playlists and exported to external formats",
   "main": "index.js",
   "scripts": {
+    "build": "tsc src/PlaylistExtends.ts src/PlaylistExtendsCLI.ts --outDir lib",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
@@ -18,7 +19,11 @@
   },
   "homepage": "https://github.com/Blackop778/playlist-extends#readme",
   "devDependencies": {
+    "@types/node": "^10.5.6",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "commander": "^2.17.0"
   }
 }

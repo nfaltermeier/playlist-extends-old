@@ -22,3 +22,7 @@ export class Playlist {
   title: string;
   songs: Song[];
 }
+
+export class Config {
+  parsers: IParser[];
+}
