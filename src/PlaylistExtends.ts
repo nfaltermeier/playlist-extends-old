@@ -1,7 +1,10 @@
 import { Config } from './Types';
 
-const PlaylistExtends = (input: string, output: string | undefined, config: Config | undefined) => {
+import Database from './processing/Database';
+import { getDatabasePathFromConfig } from './processing/Util';
+
+const playlistExtends = (input: string, output: string | undefined, config: Config | undefined) => {
 
 };
 
-export default PlaylistExtends;
+export { playlistExtends};

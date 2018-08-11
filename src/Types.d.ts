@@ -1,21 +1,21 @@
-export interface IParser {
+export abstract class Parser {
   /**
    * Returns true if the parser will accept the file based on file name
    *
    * @param fileName the name of the file to check whether to parse or not
    */
-  canParseString(fileName: string): boolean;
+  abstract canParseString(fileName: string): boolean;
 
-  parseFile(fileContents: string, fileName: string): null;
+  abstract parseFile(fileContents: string, fileName: string): null;
 
-  createFile(): string;
+  abstract createFileContents(): string;
 }
 
 export class Song {
   title: string;
   artist: string;
-  filePath: string;
-  spotifyID: string;
+  filePath?: string;
+  spotifyID?: string;
 }
 
 export class Playlist {
@@ -24,5 +24,6 @@ export class Playlist {
 }
 
 export class Config {
-  parsers: IParser[];
+  parsers?: Parser[];
+  databasePath?: string;
 }
