@@ -2,7 +2,7 @@ import commander = require('commander');
 
 import { playlistExtends } from './PlaylistExtends';
 
-let source: string;
+let source = '';
 let output: string | undefined;
 
 commander

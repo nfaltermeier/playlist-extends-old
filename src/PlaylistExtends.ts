@@ -7,4 +7,4 @@ const playlistExtends = (input: string, output: string | undefined, config: Conf
 
 };
 
-export { playlistExtends};
+export { playlistExtends };

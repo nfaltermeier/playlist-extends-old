@@ -1,30 +1,28 @@
-import { Song } from '../Types';
+import sqlite3 from 'sqlite3';
+import { Config, Song } from '../Types';
+import { getDatabasePathFromConfig } from './Util';
 
 class Database {
-  private initialized: boolean;
+  private db: sqlite3.Database;
 
-  constructor() {
-    this.initialized = false;
+  constructor(config: Config) {
+    this.db = new sqlite3.Database(getDatabasePathFromConfig(config));
   }
 
-  public initialize(path: string): boolean {
-    return false;
+  public addSongToDatabase(song: Song): Promise<void> {
+    return new Promise((resolve, reject) => reject());
   }
 
-  public isInitialized(): boolean {
-    return this.initialized;
+  public editSongInDatabase(oldData: Song, newData: Song): Promise<void> {
+    return new Promise((resolve, reject) => reject());
   }
 
-  public addToDatabase(song: Song): boolean {
-    return false;
+  public removeSongFromDatabase(song: Song): Promise<void> {
+    return new Promise((resolve, reject) => reject());
   }
 
-  public editInDatabase(oldData: Song, newData: Song): boolean {
-    return false;
-  }
-
-  public removeFromDatabase(song: Song): boolean {
-    return false;
+  public checkIfSongInDatabase(identifier: string): Promise<boolean> {
+    return new Promise((resolve, reject) => reject());
   }
 }
 

@@ -1,11 +1,13 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended"
+      "tslint:recommended",
+      "tslint-eslint-rules"
     ],
     "jsRules": {},
     "rules": {
-      "quotemark": [true, "single", "avoid-escape", "avoid-template"]
+      "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+      "object-curly-spacing": [true, "always"]
     },
     "rulesDirectory": []
 }

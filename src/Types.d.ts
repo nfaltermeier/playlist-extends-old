@@ -14,8 +14,13 @@ export abstract class Parser {
 export class Song {
   title: string;
   artist: string;
+  sources: SongSources;
+}
+
+export class SongSources {
+  youtube?: string;
+  spotify?: string;
   filePath?: string;
-  spotifyID?: string;
 }
 
 export class Playlist {
@@ -24,6 +29,5 @@ export class Playlist {
 }
 
 export class Config {
-  parsers?: Parser[];
   databasePath?: string;
 }
