@@ -1,10 +1,19 @@
+import { AbstractParser, PLXParser } from './parsers';
+import Database from './processing/Database';
 import { Config } from './Types';
 
-import Database from './processing/Database';
-import { getDatabasePathFromConfig } from './processing/Util';
+class PlaylistExtends {
+  private database: Database;
+  private parsers: AbstractParser[];
 
-const playlistExtends = (input: string, output: string | undefined, config: Config | undefined) => {
+  constructor(config?: Config) {
+    this.database = new Database(config);
 
-};
+    this.parsers = [ new PLXParser(this.database) ];
+    if (config && config.parsers) {
+      this.parsers.concat(config.parsers);
+    }
+  }
+}
 
-export { playlistExtends };
+export default PlaylistExtends;

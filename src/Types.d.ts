@@ -1,15 +1,4 @@
-export abstract class Parser {
-  /**
-   * Returns true if the parser will accept the file based on file name
-   *
-   * @param fileName the name of the file to check whether to parse or not
-   */
-  abstract canParseString(fileName: string): boolean;
-
-  abstract parseFile(fileContents: string, fileName: string): null;
-
-  abstract createFileContents(): string;
-}
+import AbstractParser from './parsers/AbstractParser';
 
 export class Song {
   title: string;
@@ -30,4 +19,5 @@ export class Playlist {
 
 export class Config {
   databasePath?: string;
+  parsers?: AbstractParser[];
 }

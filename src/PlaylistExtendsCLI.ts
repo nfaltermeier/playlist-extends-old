@@ -1,6 +1,6 @@
 import commander = require('commander');
 
-import { playlistExtends } from './PlaylistExtends';
+import PlaylistExtends from './PlaylistExtends';
 
 let source = '';
 let output: string | undefined;
@@ -14,4 +14,4 @@ commander
 
 commander.parse(process.argv);
 
-playlistExtends(source, output, undefined);
+// playlistExtends(source, output, undefined);
