@@ -1,23 +1,25 @@
 import AbstractParser from './parsers/AbstractParser';
 
-export class Song {
+export interface Song {
   title: string;
   artist: string;
   sources: SongSources;
 }
 
-export class SongSources {
+export interface SongSources {
   youtube?: string;
   spotify?: string;
   filePath?: string;
 }
 
-export class Playlist {
+export interface Playlist {
+  // can be empty but must be defined
+  description: string;
   title: string;
   songs: Song[];
 }
 
-export class Config {
+export interface Config {
   databasePath?: string;
   parsers?: AbstractParser[];
 }

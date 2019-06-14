@@ -4,7 +4,7 @@
   "description": "Playlist manager that allows for playlists to be included in other playlists and exported to external formats",
   "main": "index.js",
   "scripts": {
-    "build": "tsc src/PlaylistExtends.ts src/PlaylistExtendsCLI.ts --outDir lib",
+    "compile": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
