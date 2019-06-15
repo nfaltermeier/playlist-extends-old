@@ -9,7 +9,8 @@ class PlaylistExtends {
   constructor(config?: Config) {
     this.database = new Database(config);
 
-    this.parsers = [ new PLXParser(this.database) ];
+    const getParsers = () => this.parsers;
+    this.parsers = [ new PLXParser(this.database, getParsers) ];
     if (config && config.parsers) {
       this.parsers.concat(config.parsers);
     }
