@@ -18,6 +18,9 @@
     "url": "https://github.com/Blackop778/playlist-extends/issues"
   },
   "homepage": "https://github.com/Blackop778/playlist-extends#readme",
+  "engines": {
+    "node": ">=8"
+  },
   "devDependencies": {
     "@types/node": "^8.10.49",
     "@types/sqlite3": "^3.1.5",
@@ -27,6 +30,7 @@
   },
   "dependencies": {
     "commander": "^2.20.0",
+    "make-dir": "^3.0.0",
     "sqlite3": "^4.0.8"
   }
 }

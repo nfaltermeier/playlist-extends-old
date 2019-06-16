@@ -1,12 +1,16 @@
-import { Database as sqliteDatabase } from 'sqlite3';
+import makeDir from 'make-dir';
+import path from 'path';
+import sqlite3 from 'sqlite3';
 import { Config, Song } from '../Types';
 import { getDatabasePathFromConfig } from './Util';
 
 class Database {
-  private db: sqliteDatabase;
+  private db: sqlite3.Database;
 
   constructor(config?: Config) {
-    this.db = new sqliteDatabase(getDatabasePathFromConfig(config));
+    const dbPath = getDatabasePathFromConfig(config);
+    makeDir.sync(path.dirname(dbPath));
+    this.db = new sqlite3.Database(dbPath);
   }
 
   public addSongToDatabase(song: Song): Promise<void> {
