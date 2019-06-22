@@ -2,8 +2,8 @@ import commander = require('commander');
 
 import PlaylistExtends from './PlaylistExtends';
 
-let source = '';
-let output: string | undefined;
+// let source = '';
+// let output: string | undefined;
 
 // commander
 //   .arguments('<source> [output]')

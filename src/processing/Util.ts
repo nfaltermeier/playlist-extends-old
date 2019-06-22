@@ -13,8 +13,8 @@ const getUserDataFolder = () => {
   return { path: '~', linuxStyle: true };
 };
 
-const getDatabasePathFromConfig = (config?: Config) => {
-  if (config && config.databasePath) {
+const getDatabasePathFromConfig = (config: Config) => {
+  if (config.databasePath) {
     return config.databasePath;
   }
 

@@ -2,16 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import util from 'util';
 import Database from '../processing/Database';
-import { Playlist } from '../Types';
+import { Config, Playlist } from '../Types';
 import AbstractParser from './AbstractParser';
 
 class PLXParser extends AbstractParser {
   private static readonly readFile = util.promisify(fs.readFile);
-  private database: Database;
-  private getParsers: () => AbstractParser[];
 
-  constructor(database: Database, getParsers: () => AbstractParser[]) {
-    super();
+  constructor(database: Database, getParsers: () => AbstractParser[], config: Config) {
+    super(database, getParsers, config);
 
     this.database = database;
     this.getParsers = getParsers;
@@ -46,7 +44,7 @@ class PLXParser extends AbstractParser {
             const extendingParser = this.getParsers().find((parser) => parser.canParseString(extendingIdentifier));
 
             if (extendingParser === undefined) {
-              throw new Error(`No parser found for extended playlist ${extendingIdentifier}`);
+              throw new Error(`No parser found for extended playlist '${extendingIdentifier}'`);
             }
 
             playlist.songs = playlist.songs.concat((await extendingParser.parse(extendingIdentifier)).songs);

@@ -21,5 +21,6 @@ export interface Playlist {
 
 export interface Config {
   databasePath?: string;
+  autoImportUnknownSongs?: boolean;
   parsers?: AbstractParser[];
 }

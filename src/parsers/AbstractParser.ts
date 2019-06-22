@@ -1,6 +1,17 @@
-import { Playlist } from '../Types';
+import Database from '../processing/Database';
+import { Config, Playlist } from '../Types';
 
-export default abstract class Parser {
+export default abstract class AbstractParser {
+  protected database: Database;
+  protected getParsers: () => AbstractParser[];
+  protected config: Config;
+
+  constructor(database: Database, getParsers: () => AbstractParser[], config: Config) {
+    this.database = database;
+    this.getParsers = getParsers;
+    this.config = config;
+  }
+
   /**
    * Returns true if the parser will accept the file based on file name
    *
