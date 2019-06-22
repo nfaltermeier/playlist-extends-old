@@ -11,8 +11,9 @@ class PlaylistExtends {
 
     const getParsers = () => this.parsers;
     this.parsers = [ new PLXParser(this.database, getParsers, config) ];
-    if (config && config.parsers) {
-      this.parsers.concat(config.parsers);
+    if (config.parsers) {
+      const configParsers = config.parsers.map((parser) => new parser(this.database, getParsers, config));
+      this.parsers.concat(configParsers);
     }
   }
 }

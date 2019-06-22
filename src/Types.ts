@@ -1,4 +1,5 @@
 import AbstractParser from './parsers/AbstractParser';
+import Database from './processing/Database';
 
 export interface Song {
   title: string;
@@ -22,5 +23,6 @@ export interface Playlist {
 export interface Config {
   databasePath?: string;
   autoImportUnknownSongs?: boolean;
-  parsers?: AbstractParser[];
+  // Takes the class of the parser so it can be constructed with  the database, other parsers, and config
+  parsers?: Array<new (database: Database, getParsers: () => AbstractParser[], config: Config) => AbstractParser>;
 }
