@@ -1,7 +1,7 @@
 import makeDir from 'make-dir';
 import path from 'path';
 import sqlite3 from 'sqlite3';
-import { Config, Song } from '../Types';
+import { Config, Song, SongSources } from '../Types';
 import { getDatabasePathFromConfig } from './Util';
 
 class Database {
@@ -55,7 +55,34 @@ class Database {
   }
 
   public getSongFromDatabase(identifier: string): Promise<Song> {
-    return new Promise((resolve, reject) => reject());
+    return new Promise((resolve, reject) => {
+      let last = identifier.indexOf('-');
+      while (last !== -1) {
+        if (last === 0 || identifier[last - 1] !== '\\') {
+          const songName = identifier.substring(0, last).replace('\\-', '-').trim();
+          const artistName = identifier.substring(last + 1).replace('\\-', '-').trim();
+
+          this.db.get(`SELECT * FROM songs WHERE title='${songName}' AND artist='${artistName}'`, (err, row) => {
+            if (err) {
+              reject(`A song could not be found in the database with the title '${songName}' by '${artistName}'.` +
+              '\nPlease ensure the title and artist name are separated by a \'-\', optionally with spaces around the \'-\'.' +
+              '\nAny other \'-\'s should be prefaced by a \'\\\', for example \'\\-\'.');
+              return;
+            }
+
+            const sources: SongSources = { youtube: row.youtubeID, spotify: row.spotifyID, filePath: row.fileLocation };
+            resolve({ title: songName, artist: artistName, sources });
+          });
+          return;
+        }
+        last = identifier.indexOf('-');
+      }
+
+      // no unescaped - was found
+      reject('No unescaped \'-\' was found in the song identifier.' +
+      '\nPlease separate the song\'s title from the artist\'s name with \'-\', optionally surrounded by spaces.' +
+      '\nIf \'-\' occurs in either the song\'s title or artist\'s name preface the \'-\' with a \'\\\', for example \'\\-\'.');
+    });
   }
 }
 
