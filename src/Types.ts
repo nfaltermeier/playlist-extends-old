@@ -4,6 +4,7 @@ import Database from './processing/Database';
 export interface Song {
   title: string;
   artist: string;
+  album?: string;
   sources: SongSources;
 }
 

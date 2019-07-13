@@ -43,15 +43,45 @@ class Database {
   }
 
   public addSongToDatabase(song: Song): Promise<void> {
-    return new Promise((resolve, reject) => reject());
+    return new Promise((resolve, reject) => {
+      this.db.exec(`INSERT INTO songs (title, artist, fileLocation, spotifyID, youtubeID, album) \
+VALUES (${song.title}, ${song.artist}, ${song.sources.filePath}, ${song.sources.spotify}, ${song.sources.youtube}, ${song.album});`
+        , (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+    });
   }
 
   public editSongInDatabase(oldData: Song, newData: Song): Promise<void> {
-    return new Promise((resolve, reject) => reject());
+    return new Promise((resolve, reject) => {
+      this.db.exec(`UPDATE songs WHERE title='${oldData.title}' AND artist='${oldData.artist}' \
+SET title='${newData.title}', artist='${newData.artist}', fileLocation='${newData.sources.filePath}', \
+spotifyID='${newData.sources.spotify}', youtubeID='${newData.sources.youtube}', album='${newData.album}';`
+        , (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+    });
   }
 
   public removeSongFromDatabase(song: Song): Promise<void> {
-    return new Promise((resolve, reject) => reject());
+    return new Promise((resolve, reject) => {
+      this.db.exec(`DELETE FROM songs WHERE title='${song.title}' AND artist='${song.artist}';`
+        , (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+    });
   }
 
   public getSongFromDatabase(identifier: string): Promise<Song> {
@@ -71,7 +101,7 @@ class Database {
             }
 
             const sources: SongSources = { youtube: row.youtubeID, spotify: row.spotifyID, filePath: row.fileLocation };
-            resolve({ title: songName, artist: artistName, sources });
+            resolve({ ...row, title: songName, artist: artistName, sources });
           });
           return;
         }
